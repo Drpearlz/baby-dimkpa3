@@ -50,7 +50,7 @@ export default function Home() {
             </div>
           </Link>
           
-          <Link href="/guest-book" className="block">
+          <Link href="/guestbook" className="block">
             <div className="border rounded-lg p-4 sm:p-6 h-full transition-all hover:shadow-lg hover:border-primary">
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 

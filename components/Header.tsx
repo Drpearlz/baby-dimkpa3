@@ -53,13 +53,13 @@ export default function Header() {
             Registry
           </Link>
           <Link 
-            href="/guest-book"  // Changed to match typical Next.js routing
+            href="/guestbook"  // Changed to match typical Next.js routing
             className="hover:text-primary transition-colors"
           >
             Guestbook
           </Link>
           <Button variant="default" size="sm">
-            Download
+            Check on Mum
           </Button>
           <ThemeToggle />
         </div>
@@ -84,14 +84,14 @@ export default function Header() {
               Registry
             </Link>
             <Link 
-              href="/guest-book"  // Changed to match typical Next.js routing
+              href="/guestbook"  // Changed to match typical Next.js routing
               className="w-full text-center py-2 hover:bg-accent rounded"
               onClick={toggleMenu}
             >
               Guestbook
             </Link>
             <Button variant="default" className="w-full">
-              Download
+              Check on Mum
             </Button>
             <div className="flex items-center gap-4">
               <ThemeToggle />
