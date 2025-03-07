@@ -1,101 +1,82 @@
-import Image from "next/image";
+"use client";
+
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="container mx-auto px-4 py-8 sm:py-12">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center"
+      >
+        <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-balance">
+          Welcome to Our Baby Shower!
+        </h1>
+        <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto">
+          We&apos;re excited to celebrate this special moment with you
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-8 sm:mt-12">
+          <Link href="/guess-gender" className="block">
+            <div className="border rounded-lg p-4 sm:p-6 h-full transition-all hover:shadow-lg hover:border-primary">
+              <Sparkles className="h-8 w-8 sm:h-12 sm:w-12 mb-3 sm:mb-4 mx-auto text-pink-500" />
+              <h2 className="text-xl sm:text-2xl font-semibold mb-2">Gender Guess</h2>
+              <p className="text-sm sm:text-base">
+                Submit your guess for the baby&apos;s gender and see what others think!
+              </p>
+            </div>
+          </Link>
+          
+          <Link href="/registry" className="block">
+            <div className="border rounded-lg p-4 sm:p-6 h-full transition-all hover:shadow-lg hover:border-primary">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-8 w-8 sm:h-12 sm:w-12 mb-3 sm:mb-4 mx-auto text-blue-500"
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10" />
+              </svg>
+              <h2 className="text-xl sm:text-2xl font-semibold mb-2">Gift Registry</h2>
+              <p className="text-sm sm:text-base">
+                See the items we need for the baby and help us prepare!
+              </p>
+            </div>
+          </Link>
+          
+          <Link href="/guest-book" className="block">
+            <div className="border rounded-lg p-4 sm:p-6 h-full transition-all hover:shadow-lg hover:border-primary">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-8 w-8 sm:h-12 sm:w-12 mb-3 sm:mb-4 mx-auto text-purple-500" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+              <h2 className="text-xl sm:text-2xl font-semibold mb-2">Guestbook</h2>
+              <p className="text-sm sm:text-base">
+                Leave a note of congratulations and well-wishes for our growing family!
+              </p>
+            </div>
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        
+        <div className="mt-8 sm:mt-12">
+          <Link href="/about">
+            <Button size="lg" className="font-semibold w-full sm:w-auto">
+              Learn More About Our Journey
+            </Button>
+          </Link>
+        </div>
+      </motion.div>
     </div>
   );
 }

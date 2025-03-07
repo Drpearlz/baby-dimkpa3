@@ -1,0 +1,201 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { motion } from "framer-motion";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, getDocs, query, orderBy } from "firebase/firestore";
+import { toast } from "sonner";
+
+export default function GenderGuess() {
+  const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
+  const [guesses, setGuesses] = useState<any[]>([]);
+  const [daysLeft, setDaysLeft] = useState(0);
+  const dueDate = new Date("2025-06-30"); // Set your due date here
+  
+  useEffect(() => {
+    // Calculate days left until the due date
+    const today = new Date();
+    const diffTime = dueDate.getTime() - today.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    setDaysLeft(diffDays > 0 ? diffDays : 0);
+    
+    // Fetch guesses from Firebase
+    const fetchGuesses = async () => {
+      const q = query(collection(db, "gender-guesses"), orderBy("timestamp", "desc"));
+      const querySnapshot = await getDocs(q);
+      const fetchedGuesses: any[] = [];
+      querySnapshot.forEach((doc) => {
+        fetchedGuesses.push({ id: doc.id, ...doc.data() });
+      });
+      setGuesses(fetchedGuesses);
+    };
+    
+    fetchGuesses();
+  }, []);
+  
+  const submitGuess = async () => {
+    if (!name || !gender) {
+      toast({
+        title: "Please fill in all fields",
+        description: "Both name and gender selection are required",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    try {
+      await addDoc(collection(db, "gender-guesses"), {
+        name,
+        gender,
+        timestamp: new Date(),
+      });
+      
+      toast({
+        title: "Guess submitted!",
+        description: "Thank you for your guess!",
+      });
+      
+      // Refresh the list
+      const q = query(collection(db, "gender-guesses"), orderBy("timestamp", "desc"));
+      const querySnapshot = await getDocs(q);
+      const fetchedGuesses: any[] = [];
+      querySnapshot.forEach((doc) => {
+        fetchedGuesses.push({ id: doc.id, ...doc.data() });
+      });
+      setGuesses(fetchedGuesses);
+      
+      // Reset form
+      setName("");
+      setGender("");
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem submitting your guess",
+        variant: "destructive",
+      });
+    }
+  };
+  
+  // Calculate stats
+  const boyGuesses = guesses.filter(g => g.gender === "boy").length;
+  const girlGuesses = guesses.filter(g => g.gender === "girl").length;
+  const totalGuesses = guesses.length;
+  
+  return (
+    <div className="container mx-auto px-4 py-12">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-3xl font-bold text-center mb-2">Gender Guessing Game</h1>
+        <p className="text-center mb-8 text-muted-foreground">
+          Submit your guess for our baby&apos;s gender and see what everyone else thinks!
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Submit Your Guess</CardTitle>
+              <CardDescription>
+                Enter your information below to make your prediction
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="name">Your Name</Label>
+                  <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your name" />
+                </div>
+                
+                <div>
+                  <Label>I think it&apos;s a...</Label>
+                  <RadioGroup value={gender} onValueChange={setGender} className="mt-2">
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="boy" id="boy" />
+                      <Label htmlFor="boy" className="text-blue-500 font-medium">Boy</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="girl" id="girl" />
+                      <Label htmlFor="girl" className="text-pink-500 font-medium">Girl</Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button onClick={submitGuess}>Submit My Guess</Button>
+            </CardFooter>
+          </Card>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle>Current Results</CardTitle>
+              <CardDescription>
+                {daysLeft > 0 ? `${daysLeft} days left until we know!` : "The results are in!"}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="font-medium mb-2">Total Guesses: {totalGuesses}</h3>
+                  
+                  <div className="space-y-2">
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-blue-500 font-medium">Boy</span>
+                        <span>{boyGuesses} ({totalGuesses > 0 ? Math.round((boyGuesses / totalGuesses) * 100) : 0}%)</span>
+                      </div>
+                      <div className="w-full bg-blue-100 rounded-full h-2.5">
+                        <div 
+                          className="bg-blue-500 h-2.5 rounded-full" 
+                          style={{ width: `${totalGuesses > 0 ? (boyGuesses / totalGuesses) * 100 : 0}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-pink-500 font-medium">Girl</span>
+                        <span>{girlGuesses} ({totalGuesses > 0 ? Math.round((girlGuesses / totalGuesses) * 100) : 0}%)</span>
+                      </div>
+                      <div className="w-full bg-pink-100 rounded-full h-2.5">
+                        <div 
+                          className="bg-pink-500 h-2.5 rounded-full" 
+                          style={{ width: `${totalGuesses > 0 ? (girlGuesses / totalGuesses) * 100 : 0}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="font-medium mb-2">Recent Guesses</h3>
+                  <div className="space-y-2 max-h-48 overflow-y-auto">
+                    {guesses.slice(0, 5).map((guess) => (
+                      <div key={guess.id} className="text-sm p-2 border rounded-md">
+                        <span className="font-medium">{guess.name}</span> guessed{" "}
+                        <span className={guess.gender === "boy" ? "text-blue-500" : "text-pink-500"}>
+                          {guess.gender}
+                        </span>
+                      </div>
+                    ))}
+                    {guesses.length === 0 && (
+                      <p className="text-sm text-muted-foreground">No guesses yet. Be the first!</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
