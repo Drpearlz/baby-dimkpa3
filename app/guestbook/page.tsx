@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,81 +6,100 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
-import { db } from "@/lib/firebase";
-import { collection, addDoc, onSnapshot, query, orderBy, Timestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase"; // Ensure this is properly configured for Realtime Database
+import { ref, push, set, onValue } from "firebase/database"; // Removed 'off' as we'll use the returned unsubscribe function
 import { Heart } from "lucide-react";
-import { toast } from "sonner";
 
+// Define types for your data
 interface GuestbookEntry {
   id: string;
   name: string;
   message: string;
-  timestamp: Timestamp;
+  timestamp: number;
 }
 
-export default function GuestbookPage() {
-  const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
+export default function Guestbook() {
+  const [name, setName] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
   const [entries, setEntries] = useState<GuestbookEntry[]>([]);
-  
+
   useEffect(() => {
-    // Set up real-time listener for guestbook entries
-    const q = query(collection(db, "guestbook"), orderBy("timestamp", "desc"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const guestbookEntries: GuestbookEntry[] = [];
-      querySnapshot.forEach((doc) => {
-        guestbookEntries.push({
-          id: doc.id,
-          ...doc.data() as Omit<GuestbookEntry, 'id'>
-        });
-      });
-      setEntries(guestbookEntries);
-    });
+    // Create reference to the guestbook data
+    const guestbookRef = ref(db, "guestbook");
     
-    // Clean up subscription
-    return () => unsubscribe();
-  }, []);
+    // Set up the listener for changes and store the unsubscribe function
+    const unsubscribe = onValue(guestbookRef, (snapshot) => {
+      const data = snapshot.val();
+      const entriesArray: GuestbookEntry[] = [];
+      
+      if (data) {
+        // Loop through each key-value pair in the data object
+        Object.keys(data).forEach((key) => {
+          const entry = data[key];
+          // Check if the entry has the expected structure
+          if (entry && typeof entry === 'object' && 'name' in entry && 'message' in entry && 'timestamp' in entry) {
+            entriesArray.push({
+              id: key,
+              name: entry.name,
+              message: entry.message,
+              timestamp: entry.timestamp,
+            });
+          }
+        });
+        
+        // Sort entries by timestamp (newest first)
+        entriesArray.sort((a, b) => b.timestamp - a.timestamp);
+      }
+      
+      setEntries(entriesArray);
+    });
   
+    // Clean up subscription when component unmounts
+    return () => {
+      // Use the unsubscribe function returned by onValue
+      unsubscribe();
+    };
+  }, []);
+
   const submitEntry = async () => {
     if (!name || !message) {
-      toast.error("Please fill in all fields", {
-        description: "Both name and message are required"
-      });
+      alert("Please fill in all fields. Both name and message are required.");
       return;
     }
-    
+
     try {
-      await addDoc(collection(db, "guestbook"), {
+      const guestbookRef = ref(db, "guestbook");
+      const newEntryRef = push(guestbookRef); // Create a new unique ID for each message
+
+      // Create the new entry object
+      const newEntry = {
         name,
         message,
-        timestamp: new Date(),
-      });
-      
-      toast.success("Message added!", {
-        description: "Thank you for your kind words!"
-      });
-      
+        timestamp: Date.now(), // Current timestamp
+      };
+
+      // Set the new entry in the database at the generated ref
+      await set(newEntryRef, newEntry); // `set` writes data at the reference
+
+      alert("Thank you for your kind words! Message added successfully.");
+
       // Reset form
       setName("");
       setMessage("");
     } catch (error) {
-       
-      console.error("Submission error:", error);
-      
-      toast.error("Error", {
-        description: "There was a problem submitting your message"
-      });
+      console.error("There was a problem submitting your message", error);
+      alert("There was a problem submitting your message. Please try again.");
     }
   };
-  
-  const formatDate = (timestamp: Timestamp) => {
-    const date = timestamp.toDate();
-    return new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+
+  const formatDate = (timestamp: number) => {
+    const date = new Date(timestamp);
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     }).format(date);
   };
 
@@ -96,7 +114,7 @@ export default function GuestbookPage() {
         <p className="text-center mb-8 text-muted-foreground">
           Leave a message for the parents-to-be and the new baby!
         </p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="md:col-span-1">
             <Card>
@@ -104,25 +122,25 @@ export default function GuestbookPage() {
                 <div className="space-y-4">
                   <div>
                     <Label htmlFor="name">Your Name</Label>
-                    <Input 
-                      id="name" 
-                      value={name} 
-                      onChange={(e) => setName(e.target.value)} 
+                    <Input
+                      id="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       placeholder="Enter your name"
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="message">Your Message</Label>
-                    <Textarea 
-                      id="message" 
-                      value={message} 
-                      onChange={(e) => setMessage(e.target.value)} 
+                    <Textarea
+                      id="message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                       placeholder="Write your message of congratulations or advice..."
                       rows={5}
                     />
                   </div>
-                  
+
                   <Button onClick={submitEntry} className="w-full">
                     Add Message
                   </Button>
@@ -130,7 +148,7 @@ export default function GuestbookPage() {
               </CardContent>
             </Card>
           </div>
-          
+
           <div className="md:col-span-2">
             <div className="space-y-4">
               {entries.length === 0 ? (

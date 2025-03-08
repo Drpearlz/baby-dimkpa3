@@ -8,13 +8,21 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { motion } from "framer-motion";
 import { db } from "@/lib/firebase";
-import { collection, addDoc, getDocs, query, orderBy } from "firebase/firestore";
-import { toast } from "sonner";
+import { ref, push, set, onValue } from "firebase/database";
+import CoupleImageCard from "@/components/couple-image-card";
+
+// Define a proper TypeScript interface for the guess data
+interface Guess {
+  id: string;
+  name: string;
+  gender: string;
+  timestamp: number;
+}
 
 export default function GenderGuess() {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
-  const [guesses, setGuesses] = useState<any[]>([]);
+  const [guesses, setGuesses] = useState<Guess[]>([]);
   const [daysLeft, setDaysLeft] = useState(0);
   const dueDate = new Date("2025-06-30"); // Set your due date here
   
@@ -25,62 +33,77 @@ export default function GenderGuess() {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     setDaysLeft(diffDays > 0 ? diffDays : 0);
     
-    // Fetch guesses from Firebase
-    const fetchGuesses = async () => {
-      const q = query(collection(db, "gender-guesses"), orderBy("timestamp", "desc"));
-      const querySnapshot = await getDocs(q);
-      const fetchedGuesses: any[] = [];
-      querySnapshot.forEach((doc) => {
-        fetchedGuesses.push({ id: doc.id, ...doc.data() });
-      });
+    // Fetch guesses from Firebase Realtime Database
+    const guessesRef = ref(db, "gender-guesses");
+    const unsubscribe = onValue(guessesRef, (snapshot) => {
+      const data = snapshot.val();
+      const fetchedGuesses: Guess[] = [];
+      
+      if (data) {
+        // Convert object to array
+        Object.keys(data).forEach((key) => {
+          const guess = data[key];
+          if (guess && typeof guess === 'object' && 'name' in guess && 'gender' in guess && 'timestamp' in guess) {
+            fetchedGuesses.push({
+              id: key,
+              name: guess.name,
+              gender: guess.gender,
+              timestamp: guess.timestamp
+            });
+          }
+        });
+        
+        // Sort by timestamp (newest first)
+        fetchedGuesses.sort((a, b) => b.timestamp - a.timestamp);
+      }
+      
       setGuesses(fetchedGuesses);
-    };
+    });
     
-    fetchGuesses();
+    // Clean up subscription
+    return () => unsubscribe();
   }, []);
   
   const submitGuess = async () => {
-    if (!name || !gender) {
-      toast({
-        title: "Please fill in all fields",
-        description: "Both name and gender selection are required",
-        variant: "destructive",
-      });
+    // Check if name is empty
+    if (!name.trim()) {
+      alert("Please enter your name to submit a guess");
+      return;
+    }
+    
+    // Check if gender is selected
+    if (!gender) {
+      alert("Please select boy or girl for your guess");
       return;
     }
     
     try {
-      await addDoc(collection(db, "gender-guesses"), {
-        name,
-        gender,
-        timestamp: new Date(),
-      });
-      
-      toast({
-        title: "Guess submitted!",
-        description: "Thank you for your guess!",
-      });
-      
-      // Refresh the list
-      const q = query(collection(db, "gender-guesses"), orderBy("timestamp", "desc"));
-      const querySnapshot = await getDocs(q);
-      const fetchedGuesses: any[] = [];
-      querySnapshot.forEach((doc) => {
-        fetchedGuesses.push({ id: doc.id, ...doc.data() });
-      });
-      setGuesses(fetchedGuesses);
-      
+      const guessesRef = ref(db, "gender-guesses");
+  
+      // Use push to create a new entry with a unique ID
+      const newGuessRef = push(guessesRef);
+  
+      // Create the new guess object without id
+      const newGuess = {
+        name: name.trim(),
+        gender: gender,
+        timestamp: Date.now(),
+      };
+  
+      // Set the new guess in the database at the newly generated push ID
+      await set(newGuessRef, newGuess);
+  
+      alert("Thank you for your guess!");
+  
       // Reset form
       setName("");
       setGender("");
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "There was a problem submitting your guess",
-        variant: "destructive",
-      });
+      console.error("Error submitting guess:", error);
+      alert("There was a problem submitting your guess. Please try again.");
     }
   };
+  
   
   // Calculate stats
   const boyGuesses = guesses.filter(g => g.gender === "boy").length;
@@ -99,6 +122,8 @@ export default function GenderGuess() {
           Submit your guess for our baby&apos;s gender and see what everyone else thinks!
         </p>
         
+        <CoupleImageCard />
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
@@ -111,7 +136,12 @@ export default function GenderGuess() {
               <div className="space-y-4">
                 <div>
                   <Label htmlFor="name">Your Name</Label>
-                  <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your name" />
+                  <Input 
+                    id="name" 
+                    value={name} 
+                    onChange={(e) => setName(e.target.value)} 
+                    placeholder="Enter your name" 
+                  />
                 </div>
                 
                 <div>
@@ -130,7 +160,7 @@ export default function GenderGuess() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button onClick={submitGuess}>Submit My Guess</Button>
+              <Button onClick={submitGuess} className="w-full">Submit My Guess</Button>
             </CardFooter>
           </Card>
           
@@ -178,15 +208,16 @@ export default function GenderGuess() {
                 <div>
                   <h3 className="font-medium mb-2">Recent Guesses</h3>
                   <div className="space-y-2 max-h-48 overflow-y-auto">
-                    {guesses.slice(0, 5).map((guess) => (
-                      <div key={guess.id} className="text-sm p-2 border rounded-md">
-                        <span className="font-medium">{guess.name}</span> guessed{" "}
-                        <span className={guess.gender === "boy" ? "text-blue-500" : "text-pink-500"}>
-                          {guess.gender}
-                        </span>
-                      </div>
-                    ))}
-                    {guesses.length === 0 && (
+                    {guesses.length > 0 ? (
+                      guesses.slice(0, 5).map((guess) => (
+                        <div key={guess.id} className="text-sm p-2 border rounded-md">
+                          <span className="font-medium">{guess.name}</span> guessed{" "}
+                          <span className={guess.gender === "boy" ? "text-blue-500" : "text-pink-500"}>
+                            {guess.gender}
+                          </span>
+                        </div>
+                      ))
+                    ) : (
                       <p className="text-sm text-muted-foreground">No guesses yet. Be the first!</p>
                     )}
                   </div>
