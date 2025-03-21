@@ -1,3 +1,27 @@
+<h1 align="center" id="title">Baby Shower Essential App</h1>
+
+<p align="center"><img src="peggyroxy.me" alt="project-image"></p>
+
+<p id="description">It includes a gender reveal guess app, a baby registry, and a baby guestbook, where users or guests would drop notes for baby and parents on their new bundle of joy in-coming. Built with  [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and firebase for real-time updates, so users get to engage with their families far away on their pregnancy journey. It features a countdown timer for gender-reveal.</p>
+
+<h2>🚀 Demo</h2>
+
+Coming Soon.
+
+<h2>🧐 Features</h2>
+
+Here're some of the project's best features: \* Countdown timer \* Realtime guesses updated \* Time zone consideration \* Firebase Integration \* Couple picture slider on-tap<h2>🛠️ Installation Steps:</h2>
+
+<p>1. Git clone this repository</p>
+
+<p>2. Create a .env.local file for your Firebase code secrets. </p>
+
+<p>3. npm install</p>
+
+<h2>💻 Built with</h2>
+
+Technologies used in the project: \* React Js \* Next JS \* Firebase \* Vercel for hosting
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
