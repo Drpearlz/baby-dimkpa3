@@ -24,7 +24,7 @@ export default function GenderGuess() {
   const [gender, setGender] = useState("");
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [daysLeft, setDaysLeft] = useState(0);
-  const dueDate = new Date("2025-06-30"); // Set your due date here
+  const dueDate = new Date("2025-06-30T18:05:00-09:00"); // Set your due date here
   
   useEffect(() => {
     // Calculate days left until the due date
@@ -62,7 +62,7 @@ export default function GenderGuess() {
     
     // Clean up subscription
     return () => unsubscribe();
-  }, []);
+  }, [dueDate]); // Added dueDate to the dependency array
   
   const submitGuess = async () => {
     // Check if name is empty
@@ -87,7 +87,8 @@ export default function GenderGuess() {
       const newGuess = {
         name: name.trim(),
         gender: gender,
-        timestamp: Date.now(),
+        timestamp: new Date().toISOString()
+
       };
   
       // Set the new guess in the database at the newly generated push ID
@@ -215,6 +216,9 @@ export default function GenderGuess() {
                           <span className={guess.gender === "boy" ? "text-blue-500" : "text-pink-500"}>
                             {guess.gender}
                           </span>
+                          <div className="text-xs text-gray-500 mt-1">
+                              {guess.timestamp.toLocaleString()}
+                            </div>
                         </div>
                       ))
                     ) : (

@@ -42,7 +42,7 @@ export default function GenderRevealApp() {
   const [isRevealed, setIsRevealed] = useState<boolean>(false);
   
   // Configuration
-  const revealDate = new Date("2025-06-30T00:00:00"); // Set your reveal date here
+  const revealDate = new Date("2025-06-30T00:09:00"); // Set your reveal date here
   const actualGender: 'boy' | 'girl' = 'boy'; // Set the actual gender (only visible after reveal)
   
   // Set up real-time Firebase listener
@@ -104,16 +104,14 @@ export default function GenderRevealApp() {
   const submitGuess = async () => {
     // Validation
     if (!name.trim()) {
-      toast("Name Required", {
-        description: "Please enter your name to submit a guess",
-      });
+      alert("Name Required :description: Please enter your name to submit a guess",
+      );
       return;
     }
     
     if (!gender) {
-      toast("Selection Required", {
-        description: "Please select boy or girl for your guess",
-      });
+      alert("Selection Required, description: Please select boy or girl for your guess",
+      );
       return;
     }
     
@@ -127,18 +125,16 @@ export default function GenderRevealApp() {
       const votesRef = ref(db, 'gender-votes');
       await push(votesRef, newVote);
       
-      toast("Guess submitted!", {
-        description: "Thank you for your guess!",
-      });
+      alert("Guess submitted!, description: Thank you for your guess!",
+      );
       
       // Reset form
       setName("");
       setGender("");
     } catch (error) {
       console.error("Error submitting guess:", error);
-      toast("Error", {
-        description: "There was a problem submitting your guess",
-      });
+      toast("Error - description: There was a problem submitting your guess",
+    );
     }
   };
   
