@@ -30,8 +30,8 @@ export default function Header() {
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
-          <button 
-            onClick={toggleMenu} 
+          <button
+            onClick={toggleMenu}
             className="text-gray-600 hover:text-gray-900 focus:outline-none"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -40,20 +40,20 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-4">
-          <Link 
-            href="/guess-gender" 
+          <Link
+            href="/guess-gender"
             className="hover:text-primary transition-colors"
           >
             Guess Gender
           </Link>
-          <Link 
-            href="/registry" 
+          <Link
+            href="/registry"
             className="hover:text-primary transition-colors"
           >
             Registry
           </Link>
-          <Link 
-            href="/guestbook"  // Changed to match typical Next.js routing
+          <Link
+            href="/guestbook" // Changed to match typical Next.js routing
             className="hover:text-primary transition-colors"
           >
             Guestbook
@@ -69,29 +69,31 @@ export default function Header() {
       {isMenuOpen && (
         <div className="md:hidden absolute left-0 right-0 top-full bg-background shadow-lg z-50">
           <div className="flex flex-col items-center space-y-4 p-6">
-            <Link 
-              href="/guess-gender" 
+            <Link
+              href="/guess-gender"
               className="w-full text-center py-2 hover:bg-accent rounded"
               onClick={toggleMenu}
             >
               Guess Gender
             </Link>
-            <Link 
-              href="/registry" 
+            <Link
+              href="/registry"
               className="w-full text-center py-2 hover:bg-accent rounded"
               onClick={toggleMenu}
             >
               Registry
             </Link>
-            <Link 
-              href="/guestbook"  // Changed to match typical Next.js routing
+            <Link
+              href="/guestbook" // Changed to match typical Next.js routing
               className="w-full text-center py-2 hover:bg-accent rounded"
               onClick={toggleMenu}
             >
               Guestbook
             </Link>
-            <Button variant="default" className="w-full">
-              Check on Mum
+            <Button variant="default" className="w-full" asChild>
+              <a href="https:/wa.link/b5hb53" rel="noopener noreferrer">
+                Check on Mum
+              </a>
             </Button>
             <div className="flex items-center gap-4">
               <ThemeToggle />

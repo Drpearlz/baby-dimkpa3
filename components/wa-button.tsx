@@ -8,7 +8,7 @@ export default function Wabutton() {
         <div>
           <a
             title="Get help on WhatsApp"
-            href="https://www.wa.link/1j1wsw"
+            href="https://www.wa.link/b5hb53"
             target="_blank"
             className="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12"
           >
