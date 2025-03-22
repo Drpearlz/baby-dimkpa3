@@ -91,9 +91,9 @@ export default function Header() {
               Guestbook
             </Link>
             <Button variant="default" className="w-full" asChild>
-              <a href="https:/wa.link/b5hb53" rel="noopener noreferrer">
+              <Link href="https:/wa.link/b5hb53" target="_blank" rel="noopener noreferrer">
                 Check on Mum
-              </a>
+              </Link>
             </Button>
             <div className="flex items-center gap-4">
               <ThemeToggle />
