@@ -274,13 +274,13 @@ export default function GenderGuess() {
                       guesses.slice(0, 5).map((guess) => (
                         <div
                           key={guess.id}
-                          className={`text-sm p-2 border rounded-md ${
+                          className={`text-sm p-2 border rounded-md flex justify-between items-start ${
                             guess.gender === "boy"
                               ? "border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-900/30"
                               : "border-pink-200 bg-pink-50 dark:border-pink-800 dark:bg-pink-900/30"
                           }`}
                         >
-                          <span className="font-medium text-gray-900 dark:text-gray-100">
+                          <span className="font-medium text-gray-900 dark:text-gray-100 flex items-center gap-2">
                             {guess.name}
                           </span>{" "}
                           guessed{" "}
@@ -294,7 +294,7 @@ export default function GenderGuess() {
                             {guess.gender}
                           </span>{" "}
                           on{" "}
-                          <span className="text-xs text-gray-500 dark:text-gray-400">
+                          <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
                             {new Date(guess.timestamp).toLocaleString("en-US", {
                               timeZone: "America/Los_Angeles",
                               year: "numeric",

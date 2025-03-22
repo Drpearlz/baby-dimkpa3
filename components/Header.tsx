@@ -59,7 +59,9 @@ export default function Header() {
             Guestbook
           </Link>
           <Button variant="default" size="sm">
-            Check on Mum
+          <Link href="https:/wa.link/b5hb53" target="_blank" rel="noopener noreferrer">
+                Check on Mum
+              </Link>
           </Button>
           <ThemeToggle />
         </div>
