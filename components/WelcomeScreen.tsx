@@ -1,5 +1,5 @@
 "use client";
-import { FloatingHeartsContainer } from "@/lib/floatingheart"; // Update the import path as needed
+import { FloatingHeartsContainer } from "@/lib/floating-hearts"; // Update the import path as needed
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 
