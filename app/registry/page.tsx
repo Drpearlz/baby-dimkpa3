@@ -16,6 +16,16 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCart, Gift, Check } from "lucide-react";
 import Image from "next/image";
 
+interface RegistryItem {
+  id: string;
+  name: string;
+  price: string;
+  description: string;
+  image: string;
+  category: string;
+  link?: string; // Optional since some items don't have links
+}
+
 export default function Registry() {
   const [reserved, setReserved] = useState<Record<string, boolean>>({});
   
@@ -26,7 +36,7 @@ export default function Registry() {
     }));
   };
   
-  const amazonItems = [
+  const amazonItems: RegistryItem[] = [
     {
       id: "a1",
       name: "Baby Monitor",
@@ -65,7 +75,7 @@ export default function Registry() {
     }
   ];
   
-  const bestBuyItems = [
+  const bestBuyItems: RegistryItem[] = [
     {
       id: "b1",
       name: "Baby White Noise Machine",
@@ -86,7 +96,7 @@ export default function Registry() {
     }
   ];
   
-  const otherItems = [
+  const otherItems: RegistryItem[] = [
     {
       id: "o1",
       name: "Baby Clothes (0-3 months)",
@@ -113,7 +123,7 @@ export default function Registry() {
     }
   ];
   
-  const renderItem = (item: any) => (
+  const renderItem = (item: RegistryItem) => (
     <motion.div
       key={item.id}
       initial={{ opacity: 0, y: 10 }}

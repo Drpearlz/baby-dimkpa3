@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -31,8 +31,9 @@ export default function GenderGuess() {
   const [gender, setGender] = useState("");
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [daysLeft, setDaysLeft] = useState(0);
-  const dueDate = new Date("2025-06-30T18:05:00-09:00"); // Set your due date here
-
+  const dueDate = useMemo(() => {
+    return new Date("2025-06-30T18:05:00-09:00");
+  }, []);
   useEffect(() => {
     // Calculate days left until the due date
     const today = new Date();
