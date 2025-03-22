@@ -296,17 +296,17 @@ export default function GenderRevealApp() {
                         {votes.slice(0, 5).map((vote) => (
                           <div 
                             key={vote.id} 
-                            className={`text-sm p-2 border rounded-md ${
+                            className={`text-sm p-2 border rounded-md flex justify-between items-center ${
                               vote.guess === 'boy' ? 'border-blue-200 bg-blue-50' : 'border-pink-200 bg-pink-50'
                             }`}
                           >
                             <span className="font-medium">{vote.name}</span> guessed{" "}
                             <span className={vote.guess === "boy" ? "text-blue-500" : "text-pink-500"}>
                               {vote.guess}
+                            </span>{" "}
+                            <span className="text-xs text-gray-500 mt-1">
+                              -  {vote.timestamp.toLocaleString()}
                             </span>
-                            <div className="text-xs text-gray-500 mt-1">
-                              {vote.timestamp.toLocaleString()}
-                            </div>
                           </div>
                         ))}
                         {votes.length === 0 && (

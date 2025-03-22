@@ -11,10 +11,10 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <Link href="/" className="text-lg font-semibold">
-              Baby Shower Registry
+              Baby Dimkpa³ Shower/Registry
             </Link>
             <p className="text-sm text-muted-foreground mt-1">
-              Celebrating our new arrival with love
+              Celebrating #PegOs2015 latest arrival with love
             </p>
           </div>
           
