@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import Wabutton from "@/components/wa-button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +33,7 @@ export default function RootLayout({
                 {children}
               </div>
             </main>
+            <Wabutton/>
             <Footer />
           </div>
         </ThemeProvider>
