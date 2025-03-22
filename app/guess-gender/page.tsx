@@ -265,7 +265,9 @@ export default function GenderGuess() {
                 </div>
 
                 <div>
-                  <h3 className="font-medium mb-2">Recent Guesses</h3>
+                  <h3 className="font-medium mb-2 text-gray-900 dark:text-gray-100">
+                    Recent Guesses
+                  </h3>
                   <div className="space-y-2 max-h-48 overflow-y-auto">
                     {guesses.length > 0 ? (
                       guesses.slice(0, 5).map((guess) => (
@@ -273,23 +275,25 @@ export default function GenderGuess() {
                           key={guess.id}
                           className={`text-sm p-2 border rounded-md ${
                             guess.gender === "boy"
-                              ? "border-blue-200 bg-blue-50"
-                              : "border-pink-200 bg-pink-50"
+                              ? "border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-900/30"
+                              : "border-pink-200 bg-pink-50 dark:border-pink-800 dark:bg-pink-900/30"
                           }`}
                         >
-                          <span className="font-medium">{guess.name}</span>{" "}
+                          <span className="font-medium text-gray-900 dark:text-gray-100">
+                            {guess.name}
+                          </span>{" "}
                           guessed{" "}
                           <span
                             className={
                               guess.gender === "boy"
-                                ? "text-blue-500"
-                                : "text-pink-500"
+                                ? "text-blue-600 dark:text-blue-400"
+                                : "text-pink-600 dark:text-pink-400"
                             }
                           >
                             {guess.gender}
                           </span>{" "}
                           on{" "}
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-gray-500 dark:text-gray-400">
                             {new Date(guess.timestamp).toLocaleString("en-US", {
                               timeZone: "America/Los_Angeles",
                               year: "numeric",
@@ -303,7 +307,7 @@ export default function GenderGuess() {
                         </div>
                       ))
                     ) : (
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
                         No guesses yet. Be the first!
                       </p>
                     )}
