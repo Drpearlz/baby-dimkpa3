@@ -10,8 +10,7 @@ import {
 } from '@/components/ui/card';
 import { 
   Wallet, 
-  CreditCard, 
-  Gift, 
+  CreditCard,  
   Baby, 
   HeartHandshake
 } from 'lucide-react';
@@ -28,11 +27,6 @@ const PaymentMethods = [
     icon: CreditCard,
     link: '', // Add Interac e-transfer details or link
     details: 'Email: [roxy@sfu.ca]'
-  },
-  {
-    name: 'Flutterwave',
-    icon: Gift,
-    link: 'https://flutterwave.com/your-payment-link', // Replace with actual Flutterwave link
   },
   {
     name: 'Paystack',
@@ -95,7 +89,7 @@ const GiveButton = () => {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 20, stiffness: 200 }}
-              className="fixed bottom-0 left-0 right-0 z-50"
+              className="fixed bottom-5 left-0 right-0 z-50"
             >
               <Card className="w-full max-w-md mx-auto rounded-t-2xl dark:bg-gray-800">
                 <CardHeader className="text-center relative">
@@ -118,7 +112,7 @@ const GiveButton = () => {
                     <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-200">
                       Select Your Giving Method
                     </h3>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-4">
                       {PaymentMethods.map((method) => (
                         <motion.div
                           key={method.name}
