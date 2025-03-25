@@ -32,7 +32,7 @@ export default function GenderGuess() {
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [daysLeft, setDaysLeft] = useState(0);
   const dueDate = useMemo(() => {
-    return new Date("2025-06-30T18:05:00-09:00");
+    return new Date("2025-07-02T18:05:00-09:00");
   }, []);
   useEffect(() => {
     // Calculate days left until the due date
@@ -269,7 +269,7 @@ export default function GenderGuess() {
                   <h3 className="font-medium mb-2 text-gray-900 dark:text-gray-100">
                     Recent Guesses
                   </h3>
-                  <div className="space-y-2 max-h-48 overflow-y-auto">
+                  <div className="space-y-4 max-h-48 overflow-y-auto">
                     {guesses.length > 0 ? (
                       guesses.slice(0, 5).map((guess) => (
                         <div
