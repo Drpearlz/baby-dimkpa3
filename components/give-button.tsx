@@ -65,14 +65,14 @@ const GiveButton = () => {
   return (
     <>
       {/* Floating Donation Trigger Button */}
-      <div className="fixed bottom-4 right-4 z-50">
+      <div className="fixed bottom-14 right-4 z-50">
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsOpen(true)}
           className="bg-pink-500 text-white dark:bg-pink-600 rounded-full p-3 shadow-lg hover:bg-pink-600 dark:hover:bg-pink-700"
         >
-          <HeartHandshake size={32} />
+         give <HeartHandshake size={32} /> 
         </motion.button>
       </div>
 
