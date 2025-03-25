@@ -21,7 +21,7 @@ const PaymentMethods = [
   {
     name: 'PayPal',
     icon: Wallet,
-    link: 'https://paypal.me/drpearlz', // Replace with actual PayPal link
+    link: 'https://www.paypal.com/paypalme/drpearlz', // Replace with actual PayPal link
   },
   {
     name: 'Interac',
@@ -109,14 +109,14 @@ const GiveButton = () => {
                     Support Our Baby&apos;s Journey
                   </CardTitle>
                   <p className="text-gray-600 dark:text-gray-300 mt-2">
-                    Help us welcome our little one with your generous donation
+                    Join us welcome our little one with your gift
                   </p>
                 </CardHeader>
                 <CardContent>
                   {/* Payment Method Selection */}
                   <div>
                     <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-200">
-                      Select Payment Method
+                      Select Your Giving Method
                     </h3>
                     <div className="grid grid-cols-2 gap-4">
                       {PaymentMethods.map((method) => (
