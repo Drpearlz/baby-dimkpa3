@@ -59,7 +59,7 @@ export default function Header() {
             Guestbook
           </Link>
           <Button variant="default" size="sm">
-          <Link href="https:/wa.link/b5hb53" target="_blank" rel="noopener noreferrer">
+          <Link href="https:/wa.link/b5hb53" target="_blank" rel="noopener noreferrer" passHref>
                 Check on Mum
               </Link>
           </Button>
@@ -93,7 +93,7 @@ export default function Header() {
               Guestbook
             </Link>
             <Button variant="default" className="w-full" asChild>
-              <Link href="https:/wa.link/b5hb53" target="_blank" rel="noopener noreferrer">
+              <Link href="https:/wa.link/b5hb53" target="_blank" rel="noopener noreferrer" passHref>
                 Check on Mum
               </Link>
             </Button>
