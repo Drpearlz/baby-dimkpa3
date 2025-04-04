@@ -20,13 +20,13 @@ const PaymentMethods = [
   {
     name: 'PayPal',
     icon: Wallet,
-    link: 'https://www.paypal.com/paypalme/drpearlz', // Replace with actual PayPal link
+    link: 'https://www.paypal.me/drpearlz', // Replace with actual PayPal link
   },
   {
     name: 'Interac',
     icon: CreditCard,
     link: '', // Add Interac e-transfer details or link
-    details: 'Email: [roxy@sfu.ca]'
+    details: 'Email: roxy@sfu.ca'
   },
   {
     name: 'Paystack',
