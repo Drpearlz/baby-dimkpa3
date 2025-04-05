@@ -43,7 +43,7 @@ export default function Registry() {
       price: "$149.99",
       description: "High-definition video monitor with night vision and two-way audio",
       image: "/api/placeholder/200/200",
-      link: "https://amazon.com",
+      link: "https://www.amazon.ca/baby-reg/peggy-roxy-july-2025-burnaby/3SQRSGBZFKO3W",
       category: "Tech"
     },
     {
@@ -52,7 +52,7 @@ export default function Registry() {
       price: "$59.99",
       description: "Stylish and functional diaper bag with multiple compartments",
       image: "/api/placeholder/200/200",
-      link: "https://amazon.com",
+      link: "https://www.amazon.ca/baby-reg/peggy-roxy-july-2025-burnaby/3SQRSGBZFKO3W",
       category: "Accessories"
     },
     {
@@ -61,7 +61,7 @@ export default function Registry() {
       price: "$129.99",
       description: "Automatic baby swing with multiple speed settings and sounds",
       image: "/api/placeholder/200/200",
-      link: "https://amazon.com",
+      link: "https://www.amazon.ca/baby-reg/peggy-roxy-july-2025-burnaby/3SQRSGBZFKO3W",
       category: "Furniture"
     },
     {
