@@ -2,6 +2,8 @@
 
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
+
 import { 
   Card, 
   CardContent, 
@@ -24,6 +26,7 @@ import {
   SelectTrigger, 
   SelectValue 
 } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 
 const BabyShowerInvite = () => {
   const [formData, setFormData] = useState({
@@ -35,9 +38,9 @@ const BabyShowerInvite = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const form = useRef();
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -52,72 +55,79 @@ const BabyShowerInvite = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-
+    
     try {
-      // Replace with your actual backend/notification endpoint
-      const response = await fetch('/api/rsvp', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (response.ok) {
-        setSubmitted(true);
-        // Optional: Send a push notification or email to event organizer
-        await fetch('/api/notify-organizer', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            message: `New RSVP: ${formData.name} is ${formData.rsvpStatus}`,
-            guests: formData.guests
-          })
-        });
-      } else {
-        // Handle error
-        alert('Something went wrong. Please try again.');
+      // Using EmailJS to send the form data
+      const emailjsServiceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const emailjsTemplateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const emailjsPublicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+      
+      // Check if the environment variables are defined
+      if (!emailjsServiceId || !emailjsTemplateId || !emailjsPublicKey) {
+        throw new Error('EmailJS credentials are missing in environment variables');
       }
+      
+      if (formRef.current) {
+        await emailjs.sendForm(
+          emailjsServiceId,
+          emailjsTemplateId,
+          formRef.current,
+          emailjsPublicKey
+        );
+      } else {
+        throw new Error('Form reference is not available');
+      }
+      
+      setSubmitted(true);
     } catch (error) {
       console.error('RSVP submission error:', error);
-      alert('Network error. Please check your connection.');
+      alert('There was an error sending your RSVP. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
-
-  if (submitted) {
-    return (
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900"
-      >
-        <Card className="w-full max-w-md text-center">
-          <CardContent className="p-8">
-            <div className="flex justify-center mb-4">
-              <Check className="w-16 h-16 text-green-500" />
-            </div>
-            <h2 className="text-2xl font-bold mb-4 dark:text-white">
-              Thank You, {formData.name}!
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Your RSVP for the baby shower has been confirmed.
-            </p>
-            <Button 
-              onClick={() => setSubmitted(false)}
-              className="w-full"
-            >
-              Submit Another RSVP
-            </Button>
-          </CardContent>
-        </Card>
-      </motion.div>
-    );
-  }
+    
+      if (submitted) {
+      return (
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900"
+        >
+          <Card className="w-full max-w-md text-center">
+            <CardContent className="p-8">
+              <div className="flex justify-center mb-4">
+                <Check className="w-16 h-16 text-green-500" />
+              </div>
+              <h2 className="text-2xl font-bold mb-4 dark:text-white">
+                Thank You, {formData.name}!
+              </h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                Your RSVP for the baby shower has been confirmed.
+              </p>
+              <Button 
+                onClick={() => {
+                  setSubmitted(false);
+                  setFormData({
+                    name: '',
+                    email: '',
+                    guests: '0',
+                    rsvpStatus: 'attending',
+                    message: ''
+                  });
+                }}
+                className="w-full"
+              >
+                Submit Another RSVP
+              </Button>
+            </CardContent>
+          </Card>
+        </motion.div>
+      );
+    }
 
   return (
     <div className="flex items-center justify-center p-4">
@@ -130,7 +140,7 @@ const BabyShowerInvite = () => {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold text-gray-800 dark:text-white flex items-center justify-center gap-2">
               <Gift className="text-pink-500" />
-              Baby Shower Invitation
+              Baby Dimkpa3 Shower Invitation
             </CardTitle>
             <div className="mt-4 text-gray-600 dark:text-gray-300 space-y-2">
               <div className="flex items-center justify-center gap-2">
@@ -187,6 +197,7 @@ const BabyShowerInvite = () => {
                     ))}
                   </SelectContent>
                 </Select>
+                <input type="hidden" name="guests" value={formData.guests} />
               </div>
 
               <div>
@@ -204,13 +215,33 @@ const BabyShowerInvite = () => {
                     <SelectItem value="not-attending">Not Attending</SelectItem>
                   </SelectContent>
                 </Select>
+                <input type="hidden" name="rsvpStatus" value={formData.rsvpStatus} />
+              </div>
+
+              <div>
+                <label className="block mb-2 dark:text-gray-200">Message (Optional)</label>
+                <Textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Any special notes or dietary requirements?"
+                  className="dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                />
               </div>
 
               <Button 
                 type="submit" 
                 className="w-full bg-pink-500 hover:bg-pink-600 dark:bg-pink-600 dark:hover:bg-pink-700"
+                disabled={loading}
               >
-                Submit RSVP
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  "Submit RSVP"
+                )}
               </Button>
             </form>
           </CardContent>
