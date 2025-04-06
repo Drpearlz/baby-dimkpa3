@@ -23,7 +23,7 @@ const CoupleImageCard = () => {
               src={image}
               alt="Couple Image"
               fill
-              className="object-cover"
+              className="object-contain"
             />
           </div>
           

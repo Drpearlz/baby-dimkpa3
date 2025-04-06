@@ -58,6 +58,12 @@ export default function Header() {
           >
             Guestbook
           </Link>
+          <Link
+            href="/rsvp" // Changed to match typical Next.js routing
+            className="hover:text-primary transition-colors"
+          >
+            RSVP
+          </Link>
           <Button variant="default" size="sm">
           <Link href="https://wa.link/b5hb53" target="_blank" rel="noopener noreferrer" passHref>
                 Check on Mum
@@ -91,6 +97,13 @@ export default function Header() {
               onClick={toggleMenu}
             >
               Guestbook
+            </Link>
+            <Link
+              href="/rsvp" // Changed to match typical Next.js routing
+              className="w-full text-center py-2 hover:bg-accent rounded"
+              onClick={toggleMenu}
+            >
+              RSVP
             </Link>
             <Button variant="default" className="w-full" asChild>
               <Link href="https://wa.link/b5hb53" target="_blank" rel="noopener noreferrer" passHref>
