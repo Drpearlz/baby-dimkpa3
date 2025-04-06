@@ -79,27 +79,35 @@ export default function Registry() {
   const otherItems: RegistryItem[] = [
     {
       id: "o1",
-      name: "Baby Clothes (0-3 months)",
+      name: "African Pear",
       price: "Any",
-      description: "Any gender-neutral onesies, sleepers, or outfits",
+      description: "Found in African stores",
       image: "/ube.jpg",
-      category: "Clothing"
+      category: "Feeding"
     },
     {
       id: "o2",
-      name: "Diapers (Newborn)",
+      name: "Gentle used clothing",
       price: "Any",
-      description: "Any brand of newborn diapers",
-      image: "/lucozade.jpg",
+      description: "Any gender-neutral onesies, sleepers, or outfits",
+      image: "/cloth.jpg",
       category: "Essentials"
     },
     {
       id: "o3",
-      name: "Baby Books",
+      name: "Lucozade (Mother)",
       price: "Any",
-      description: "Board books or fabric books for baby",
+      description: "Found in African stores",
+      image: "/lucozade.jpg",
+      category: "Essentials"
+    },
+    {
+      id: "o4",
+      name: "Blueband",
+      price: "Any",
+      description: "Found in African stores",
       image: "/blb.jpg",
-      category: "Educational"
+      category: "Feeding"
     }
   ];
   
@@ -167,7 +175,9 @@ export default function Registry() {
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold text-center mb-2">Baby Registry</h1>
       <p className="text-center mb-8 text-muted-foreground">
-        Help us prepare for our little one by choosing a gift from our registry
+      Hi family and friends, We&apos;ve set up a registry on Amazon for some things we might
+       need for baby Dimkpa 3. Don&apos;t feel pressured to get anything. The list is more of a guide. 
+       Feel free to shop elsewhere if needed. See you at the shower on June 21 @ 1pm. Cheers. Osorochi & Peggy
       </p>
       
       <Tabs defaultValue="all" className="w-full">
