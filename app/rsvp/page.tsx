@@ -154,7 +154,7 @@ const BabyShowerInvite = () => {
             </div>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block mb-2 dark:text-gray-200">Name</label>
                 <Input
