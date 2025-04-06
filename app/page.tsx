@@ -76,7 +76,8 @@ export default function Home() {
               Learn More About Our Journey
             </Button>
           </Link>
-          <p> </p>
+          </div>
+        <div className="mt-8 sm:mt-12">
           <Link href="/rsvp">
           <Button size="lg" className="font-semibold w-full sm:w-auto">
             RSVP to baby Shower</Button>
