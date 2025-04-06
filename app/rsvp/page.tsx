@@ -70,16 +70,13 @@ const BabyShowerInvite = () => {
         throw new Error('EmailJS credentials are missing in environment variables');
       }
       
-      if (formRef.current) {
-        await emailjs.sendForm(
-          emailjsServiceId,
-          emailjsTemplateId,
-          formRef.current,
-          emailjsPublicKey
-        );
-      } else {
-        throw new Error('Form reference is not available');
-      }
+      // Send the form with EmailJS
+      await emailjs.sendForm(
+        emailjsServiceId,
+        emailjsTemplateId,
+        e.target as HTMLFormElement,
+        emailjsPublicKey
+      );
       
       setSubmitted(true);
     } catch (error) {
@@ -90,44 +87,44 @@ const BabyShowerInvite = () => {
     }
   };
     
-      if (submitted) {
-      return (
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900"
-        >
-          <Card className="w-full max-w-md text-center">
-            <CardContent className="p-8">
-              <div className="flex justify-center mb-4">
-                <Check className="w-16 h-16 text-green-500" />
-              </div>
-              <h2 className="text-2xl font-bold mb-4 dark:text-white">
-                Thank You, {formData.name}!
-              </h2>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                Your RSVP for the baby shower has been confirmed.
-              </p>
-              <Button 
-                onClick={() => {
-                  setSubmitted(false);
-                  setFormData({
-                    name: '',
-                    email: '',
-                    guests: '0',
-                    rsvpStatus: 'attending',
-                    message: ''
-                  });
-                }}
-                className="w-full"
-              >
-                Submit Another RSVP
-              </Button>
-            </CardContent>
-          </Card>
-        </motion.div>
-      );
-    }
+  if (submitted) {
+    return (
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900"
+      >
+        <Card className="w-full max-w-md text-center">
+          <CardContent className="p-8">
+            <div className="flex justify-center mb-4">
+              <Check className="w-16 h-16 text-green-500" />
+            </div>
+            <h2 className="text-2xl font-bold mb-4 dark:text-white">
+              Thank You, {formData.name}!
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Your RSVP for the baby shower has been confirmed.
+            </p>
+            <Button 
+              onClick={() => {
+                setSubmitted(false);
+                setFormData({
+                  name: '',
+                  email: '',
+                  guests: '0',
+                  rsvpStatus: 'attending',
+                  message: ''
+                });
+              }}
+              className="w-full"
+            >
+              Submit Another RSVP
+            </Button>
+          </CardContent>
+        </Card>
+      </motion.div>
+    );
+  }
 
   return (
     <div className="flex items-center justify-center p-4">
@@ -154,7 +151,7 @@ const BabyShowerInvite = () => {
             </div>
           </CardHeader>
           <CardContent>
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block mb-2 dark:text-gray-200">Name</label>
                 <Input
