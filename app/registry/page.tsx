@@ -57,7 +57,7 @@ export default function Registry() {
     },
     {
       id: "a3",
-      name: "Baby Swing",
+      name: "Playard & Activity Centre",
       price: "$72.99",
       description: "Baby playard and activity centre",
       image: "/playard.jpg",
