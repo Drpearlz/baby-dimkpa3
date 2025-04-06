@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
@@ -38,7 +38,6 @@ const BabyShowerInvite = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -70,11 +69,20 @@ const BabyShowerInvite = () => {
         throw new Error('EmailJS credentials are missing in environment variables');
       }
       
-      // Send the form with EmailJS
-      await emailjs.sendForm(
+      // Create template parameters object directly
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        guests: formData.guests,
+        rsvpStatus: formData.rsvpStatus,
+        message: formData.message
+      };
+      
+      // Send the email using the direct method
+      await emailjs.send(
         emailjsServiceId,
         emailjsTemplateId,
-        e.target as HTMLFormElement,
+        templateParams,
         emailjsPublicKey
       );
       
@@ -194,7 +202,6 @@ const BabyShowerInvite = () => {
                     ))}
                   </SelectContent>
                 </Select>
-                <input type="hidden" name="guests" value={formData.guests} />
               </div>
 
               <div>
@@ -212,7 +219,6 @@ const BabyShowerInvite = () => {
                     <SelectItem value="not-attending">Not Attending</SelectItem>
                   </SelectContent>
                 </Select>
-                <input type="hidden" name="rsvpStatus" value={formData.rsvpStatus} />
               </div>
 
               <div>
