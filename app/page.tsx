@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -75,6 +76,7 @@ export default function Home() {
               Learn More About Our Journey
             </Button>
           </Link>
+          <p> </p>
           <Link href="/rsvp">
           <Button size="lg" className="font-semibold w-full sm:w-auto">
             RSVP to baby Shower</Button>
