@@ -178,8 +178,12 @@ export default function Registry() {
   target="_blank" 
   rel="noopener noreferrer" 
   className="block text-center mb-8 text-muted-foreground hover:underline"
-><ExternalLink className="h-4 w-4 mr-2" /> 
-      <h1 className="text-3xl font-bold text-center mb-2">Baby Registry</h1></a>
+>
+  <div className="flex items-center justify-center gap-2">
+    <ExternalLink className="h-4 w-4" />
+    <h1 className="text-3xl font-bold">Baby Registry</h1>
+  </div>
+</a>
       <p className="text-center mb-8 text-muted-foreground">
       Hi family and friends, We&apos;ve set up a registry on Amazon for some things we might
        need for baby Dimkpa 3. Don&apos;t feel pressured to get anything. The list is more of a guide. 
