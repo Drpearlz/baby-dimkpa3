@@ -1,4 +1,4 @@
-"use client";
+p"use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Gift, Check } from "lucide-react";
+import { ShoppingCart, Gift, Check, ExternalLink } from "lucide-react";
 import Image from "next/image";
 
 interface RegistryItem {
@@ -178,7 +178,7 @@ export default function Registry() {
   target="_blank" 
   rel="noopener noreferrer" 
   className="block text-center mb-8 text-muted-foreground hover:underline"
->
+><ExternalLink className="h-4 w-4 mr-2" /> 
       <h1 className="text-3xl font-bold text-center mb-2">Baby Registry</h1></a>
       <p className="text-center mb-8 text-muted-foreground">
       Hi family and friends, We&apos;ve set up a registry on Amazon for some things we might
