@@ -180,7 +180,7 @@ export default function Registry() {
   className="block text-center mb-8 text-muted-foreground hover:underline"
 >
   <div className="flex items-center justify-center gap-2">
-    <ExternalLink className="h-4 w-4" />
+    <ExternalLink className="h-7 w-7" />
     <h1 className="text-3xl font-bold">Baby Registry</h1>
   </div>
 </a>
