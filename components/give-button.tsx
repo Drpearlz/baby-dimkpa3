@@ -64,7 +64,7 @@ const GiveButton = () => {
     whileHover={{ scale: 1.1 }}
     whileTap={{ scale: 0.95 }}
     onClick={() => setIsOpen(true)}
-    className="bg-purple-300 text-white dark:bg-purple-400 rounded-full p-3 shadow-lg hover:bg-purple-400 dark:hover:bg-purple-500"
+    className="bg-cyan-500 text-white dark:bg-cyan-600 rounded-full p-3 shadow-lg hover:bg-cyan-400 dark:hover:bg-cyan-500"
   >
     give <HeartHandshake size={32} />
   </motion.button>
