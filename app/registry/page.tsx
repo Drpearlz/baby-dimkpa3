@@ -173,7 +173,13 @@ export default function Registry() {
   
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold text-center mb-2">Baby Registry</h1>
+      <a 
+  href="https://www.amazon.ca/baby-reg/peggy-roxy-july-2025-burnaby/3SQRSGBZFKO3W" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  className="block text-center mb-8 text-muted-foreground hover:underline"
+>
+      <h1 className="text-3xl font-bold text-center mb-2">Baby Registry</h1></a>
       <p className="text-center mb-8 text-muted-foreground">
       Hi family and friends, We&apos;ve set up a registry on Amazon for some things we might
        need for baby Dimkpa 3. Don&apos;t feel pressured to get anything. The list is more of a guide. 
