@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 
 import { 
   Card, 
@@ -59,41 +58,29 @@ const BabyShowerInvite = () => {
     setLoading(true);
     
     try {
-      // Using EmailJS to send the form data
-      const emailjsServiceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const emailjsTemplateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-      const emailjsPublicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-      
-      // Check if the environment variables are defined
-      if (!emailjsServiceId || !emailjsTemplateId || !emailjsPublicKey) {
-        throw new Error('EmailJS credentials are missing in environment variables');
+        // Send data to our API endpoint
+        const response = await fetch('/api/send-rsvp', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to send RSVP');
+        }
+        
+        setSubmitted(true);
+      } catch (error) {
+        console.error('RSVP submission error:', error);
+        alert('There was an error sending your RSVP. Please try again.');
+      } finally {
+        setLoading(false);
       }
+    };
       
-      // Create template parameters object directly
-      const templateParams = {
-        name: formData.name,
-        email: formData.email,
-        guests: formData.guests,
-        rsvpStatus: formData.rsvpStatus,
-        message: formData.message
-      };
-      
-      // Send the email using the direct method
-      await emailjs.send(
-        emailjsServiceId,
-        emailjsTemplateId,
-        templateParams,
-        emailjsPublicKey
-      );
-      
-      setSubmitted(true);
-    } catch (error) {
-      console.error('RSVP submission error:', error);
-      alert('There was an error sending your RSVP. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
     
   if (submitted) {
     return (
@@ -144,7 +131,7 @@ const BabyShowerInvite = () => {
         <Card className="shadow-2xl dark:bg-gray-800">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold text-gray-800 dark:text-white flex items-center justify-center gap-2">
-              <Gift className="text-pink-500" />
+              <Gift className="text-cyan-500 w-5 h-5" />
               Baby Dimkpa3 Shower Invitation
             </CardTitle>
             <div className="mt-4 text-gray-600 dark:text-gray-300 space-y-2">
@@ -234,7 +221,7 @@ const BabyShowerInvite = () => {
 
               <Button 
                 type="submit" 
-                className="w-full bg-pink-500 hover:bg-pink-600 dark:bg-pink-600 dark:hover:bg-pink-700"
+                className="w-full bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-600 dark:hover:bg-cyan-700"
                 disabled={loading}
               >
                 {loading ? (
