@@ -58,30 +58,36 @@ const BabyShowerInvite = () => {
     setLoading(true);
     
     try {
-        // Send data to our API endpoint
-        const response = await fetch('/api/send-rsvp', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
-        
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Failed to send RSVP');
-        }
-        
-        setSubmitted(true);
-      } catch (error) {
-        console.error('RSVP submission error:', error);
-        alert('There was an error sending your RSVP. Please try again.');
-      } finally {
-        setLoading(false);
-      }
-    };
+      console.log('Submitting RSVP data:', formData);
       
-    
+      const response = await fetch('/api/send-rsvp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const responseData = await response.json();
+      console.log('RSVP response:', responseData);
+      
+      if (!response.ok) {
+        console.error('RSVP submission error:', responseData.message);
+        throw new Error(responseData.message || 'Failed to send RSVP');
+      }
+      
+      console.log('RSVP submitted successfully!');
+      
+      setSubmitted(true);
+    } catch (error) {
+      console.error('RSVP submission error:', error);
+      alert(`Error: ${error instanceof Error ? error.message : 'Unknown error occurred'}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+      
+
   if (submitted) {
     return (
       <motion.div 
