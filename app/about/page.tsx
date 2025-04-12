@@ -14,7 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Heart, Baby, CalendarDays } from "lucide-react";
 
 export default function AboutUs() {
-  const [activeTab, setActiveTab] = useState("dad");
+  const [activeTab, setActiveTab] = useState("family");
 
   // Family members data
   const familyMembers = [
@@ -45,33 +45,20 @@ export default function AboutUs() {
       ],
     },
     {
-      id: "child1",
-      name: "ChiLiveth",
-      role: "Big Sister",
-      age: 10,
+      id: "children",
+      name: "ChiLiveth and Chimenem",
+      role: "Big Siblings",
+      age: 5-10,
       image: "/child1-placeholder.jpg", // Replace with actual image path
       description:
         "Fourth-grader who loves science experiments and ballet. I'm excited to be a big sister again and have been practicing with my dolls. My favorite things are playing the piano, crochetting, and playing with my squishy doughs.",
       funFacts: [
-        "Knows all the planets and their moons",
-        "Learning to play the ukele",
-        "Has done 4+ dance shows",
+        "Chimenem is the best lawyer in the family.",
+        "Both birthdays are in July, a week apart",
+        "ChiLiveth has done 4+ dance shows",
       ],
     },
-    {
-      id: "child2",
-      name: "Chimenem",
-      role: "Little Brother",
-      age: 4,
-      image: "/child2-placeholder.jpg", // Replace with actual image path
-      description:
-        "Preschooler with endless energy and curiosity. I love dinosaurs, building blocks, and playing with spisdey and gecko (from PJ Masks). I'm looking forward to teaching the new baby all my favorite games.",
-      funFacts: [
-        "Can name over 30 dinosaurs",
-        "Already learning to read",
-        "Best lawyer in the family",
-      ],
-    },
+   
     {
       id: "baby",
       name: "Baby",
@@ -133,11 +120,11 @@ export default function AboutUs() {
           <Card className="mb-8">
             <CardHeader>
               <Tabs
-                defaultValue="dad"
+                defaultValue="family"
                 value={activeTab}
                 onValueChange={setActiveTab}
               >
-                <TabsList className="grid grid-cols-5 md:grid-cols-6 mb-4">
+                <TabsList className="grid grid-cols-5 md:grid-cols-5 mb-4">
                   <TabsTrigger value="family">Family</TabsTrigger>
                   {familyMembers.map((member) => (
                     <TabsTrigger key={member.id} value={member.id}>
@@ -147,13 +134,13 @@ export default function AboutUs() {
                 </TabsList>
 
                 <CardTitle>
-                  {activeTab === "dad"
+                  {activeTab === "family"
                     ? "Our Story"
                     : familyMembers.find((m) => m.id === activeTab)?.name || ""}
                 </CardTitle>
                 <CardDescription>
                   {activeTab === "family"
-                    ? "A little bit about our journey together"
+                    ? "A little bit about us"
                     : familyMembers.find((m) => m.id === activeTab)?.role || ""}
                 </CardDescription>
               </Tabs>
@@ -174,13 +161,13 @@ export default function AboutUs() {
                       </div>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <CalendarDays className="h-4 w-4" />
-                        <span>Summer 2024</span>
+                        <span>Spring 2025</span>
                       </div>
                     </div>
 
                     <div className="space-y-4">
                       <p>
-                        We&apos;re the Madukorom-Dimkpa's family, living in beautiful British Columbia,
+                        We&apos;re the Madukorom-Dimkpa&apos;s family, living in beautiful British Columbia,
                         Canada. Our journey began when Osorochi and Peggy met in the
                         university and married in 2015. Since then, we&apos;ve welcomed
                         two amazing children, ChiLiveth and Chimenem, into our lives.
