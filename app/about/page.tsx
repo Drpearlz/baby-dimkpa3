@@ -20,8 +20,8 @@ export default function AboutUs() {
   const familyMembers = [
     {
       id: "dad",
-      name: "Osorochi",
-      role: "Dad",
+      name: "Dad",
+      role: "Osorochi",
       image: "/dad-placeholder.jpg", // Replace with actual image path
       description:
         "Amateur chef by night. I love spending time with family and friends.",
@@ -33,8 +33,8 @@ export default function AboutUs() {
     },
     {
       id: "mom",
-      name: "Peggy",
-      role: "Mom",
+      name: "Mum",
+      role: "Peggy",
       image: "/mom-placeholder.jpg", // Replace with actual image path
       description:
         "Software engineer by day, amateur chef by night. I love building things, whether it's code or furniture. When I'm not working, you'll find me coaching soccer or trying to perfect my pizza dough recipe.",
@@ -46,8 +46,8 @@ export default function AboutUs() {
     },
     {
       id: "children",
-      name: "Chi - Chi",
-      role: "Big Siblings",
+      name: "Kids",
+      role: "ChiLiveth and Chimenem",
       age: 5-10,
       image: "/child1-placeholder.jpg", // Replace with actual image path
       description:
