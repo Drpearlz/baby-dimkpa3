@@ -120,22 +120,22 @@ const GiveButton = () => {
                           whileTap={{ scale: 0.95 }}
                           className={`flex items-center justify-center p-4 rounded-lg cursor-pointer border-2 
                             ${selectedPaymentMethod === method.name
-                              ? 'border-pink-500 bg-pink-50 dark:border-pink-600 dark:bg-gray-700'
-                              : 'border-gray-200 hover:border-pink-300 dark:border-gray-600 dark:hover:border-pink-600'
+                              ? 'border-cyan-500 bg-cyan-50 dark:border-cyan-600 dark:bg-gray-700'
+                              : 'border-gray-200 hover:border-cyan-300 dark:border-gray-600 dark:hover:border-cyan-600'
                             }`}
                           onClick={() => handlePaymentMethodSelect(method)}
                         >
                           <method.icon 
                             className={`mr-2 
                               ${selectedPaymentMethod === method.name 
-                                ? 'text-pink-500 dark:text-pink-400' 
+                                ? 'text-cyan-500 dark:text-cyan-400' 
                                 : 'text-gray-500 dark:text-gray-400'
                               }`} 
                           />
                           <span 
                             className={`font-medium 
                               ${selectedPaymentMethod === method.name 
-                                ? 'text-pink-700 dark:text-pink-300' 
+                                ? 'text-cyan-700 dark:text-cyan-300' 
                                 : 'text-gray-700 dark:text-gray-200'
                               }`}
                           >
