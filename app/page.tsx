@@ -73,7 +73,7 @@ export default function Home() {
         <div className="mt-8 sm:mt-12">
           <Link href="/about">
             <Button size="lg" className="font-semibold w-full sm:w-auto">
-              Learn More About Our Journey
+              Learn More About Us
             </Button>
           </Link>
           </div>
