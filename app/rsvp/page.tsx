@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-
 import { 
   Card, 
   CardContent, 
@@ -26,8 +25,10 @@ import {
   SelectValue 
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { useRouter } from 'next/navigation';
 
 const BabyShowerInvite = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -106,20 +107,10 @@ const BabyShowerInvite = () => {
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Your RSVP for the baby shower has been confirmed.
             </p>
-            <Button 
-              onClick={() => {
-                setSubmitted(false);
-                setFormData({
-                  name: '',
-                  email: '',
-                  guests: '0',
-                  rsvpStatus: 'attending',
-                  message: ''
-                });
-              }}
-              className="w-full"
+            <Button onClick={() => router.push('/registry')} 
+            className="w-full"
             >
-              Submit Another RSVP
+              Go To Registry
             </Button>
           </CardContent>
         </Card>
