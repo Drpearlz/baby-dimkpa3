@@ -136,7 +136,7 @@ const BabyShowerInvite = () => {
                   rel="noopener noreferrer"
                   className="hover:underline text-gray-800 dark:text-white"
                 >
-                  281 Holdom Avenue, Burnaby, BC
+                  281 Holdom Ave, Burnaby, BC
                 </a>
               </div>
             </div>
