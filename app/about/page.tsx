@@ -205,11 +205,7 @@ export default function AboutUs() {
                             fill
                           />
                         </div>
-                        {member.age && (
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <span>Age: {member.age}</span>
-                          </div>
-                        )}
+                        
                       </div>
 
                       <div className="space-y-4">
