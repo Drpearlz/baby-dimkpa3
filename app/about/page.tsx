@@ -14,7 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Heart, Baby, CalendarDays } from "lucide-react";
 
 export default function AboutUs() {
-  const [activeTab, setActiveTab] = useState("family");
+  const [activeTab, setActiveTab] = useState("dad");
 
   // Family members data
   const familyMembers = [
@@ -133,7 +133,7 @@ export default function AboutUs() {
           <Card className="mb-8">
             <CardHeader>
               <Tabs
-                defaultValue="family"
+                defaultValue="dad"
                 value={activeTab}
                 onValueChange={setActiveTab}
               >
@@ -147,7 +147,7 @@ export default function AboutUs() {
                 </TabsList>
 
                 <CardTitle>
-                  {activeTab === "family"
+                  {activeTab === "dad"
                     ? "Our Story"
                     : familyMembers.find((m) => m.id === activeTab)?.name || ""}
                 </CardTitle>
@@ -180,22 +180,22 @@ export default function AboutUs() {
 
                     <div className="space-y-4">
                       <p>
-                        We&apos;re the Johnson family, living in sunny Portland,
-                        Oregon. Our journey began when Michael and Sarah met in
-                        college and married in 2015. Since then, we&apos;ve welcomed
-                        two amazing children, Emma and Noah, into our lives.
+                        We&apos;re the Madukorom-Dimkpa's family, living in beautiful British Columbia,
+                        Canada. Our journey began when Osorochi and Peggy met in the
+                        university and married in 2015. Since then, we&apos;ve welcomed
+                        two amazing children, ChiLiveth and Chimenem, into our lives.
                       </p>
                       <p>
                         Now we&apos;re eagerly awaiting the arrival of our newest
-                        family member! Our days are filled with school projects,
-                        soccer practice, weekend adventures, and preparing our
+                        family member! Our days are filled with school and geocery runs,
+                        dance practice, weekend activities, and preparing our
                         home and hearts for baby number three.
                       </p>
                       <p>
-                        We love traveling, board game nights, hiking local
-                        trails, and community volunteer work. Our home is usually
+                        We love traveling, game nights, cooking and eating together with community 
+                        . Our home is usually
                         noisy, often messy, but always filled with laughter and
-                        love.
+                        love from family and friends.
                       </p>
                       <div className="flex items-center gap-2 mt-4">
                         <Baby className="h-5 w-5 text-blue-500" />
