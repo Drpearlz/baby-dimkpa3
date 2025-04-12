@@ -37,7 +37,7 @@ export default function AboutUs() {
       role: "Peggy",
       image: "/mom-placeholder.jpg", // Replace with actual image path
       description:
-        "Software engineer by day, amateur chef by night. I love building things, whether it's code or furniture. When I'm not working, you'll find me coaching soccer or trying to perfect my pizza dough recipe.",
+        "Software engineer by day, amateur chef by night. I love building things, whether it's code or furniture. When I'm not working, you'll find me playing soccer or trying to learn something online.",
       funFacts: [
         "An engineer, a scientist and a lifelong learner",
         "Can speak three languages",
@@ -48,7 +48,7 @@ export default function AboutUs() {
       id: "children",
       name: "Kids",
       role: "ChiLiveth and Chimenem",
-      age: 5/10,
+      age: 5 and 10,
       image: "/child1-placeholder.jpg", // Replace with actual image path
       description:
         "ChiLiveth is a fourth-grader who loves science experiments and ballet. She is excited to be a big sister again and has years of experience with her brother. Her favorite things are playing the piano, crochetting, and playing with my squishy doughs. For Chimenem he enjoys Gecko (PJ Masks), Spidey and Chase (Paw Patrol).",
