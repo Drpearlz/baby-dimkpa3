@@ -51,8 +51,7 @@ export default function AboutUs() {
       age: 5-10,
       image: "/child1-placeholder.jpg", // Replace with actual image path
       description:
-        "ChiLiveth is a fourth-grader who loves science experiments and ballet. She is excited to be a big sister again and has years of experience with her brother. Her favorite things are playing the piano, crochetting, and playing with my squishy doughs.
-        For Chimenem he enjoys Gecko (PJ Masks), Spidey and Chase (Paw Patrol)..",
+        "ChiLiveth is a fourth-grader who loves science experiments and ballet. She is excited to be a big sister again and has years of experience with her brother. Her favorite things are playing the piano, crochetting, and playing with my squishy doughs. For Chimenem he enjoys Gecko (PJ Masks), Spidey and Chase (Paw Patrol).",
       funFacts: [
         "Chimenem is the best lawyer in the family.",
         "Both birthdays are in July, a week apart",
