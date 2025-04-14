@@ -22,7 +22,7 @@ export default function AboutUs() {
       id: "dad",
       name: "Dad",
       role: "Osorochi",
-      image: "/Dad.jpg", // Replace with actual image path
+      image: "/dad.jpg", // Replace with actual image path
       description:
         "Amateur chef by night. I love spending time with family and friends.",
       funFacts: [
@@ -199,7 +199,7 @@ export default function AboutUs() {
                       <div>
                         <div className="aspect-square relative rounded-lg overflow-hidden mb-4">
                           <Image
-                            src="/api/placeholder/500/500"
+                            src={member.image}
                             alt={member.name}
                             className="object-cover"
                             fill
