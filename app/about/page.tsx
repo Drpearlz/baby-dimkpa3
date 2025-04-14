@@ -62,7 +62,7 @@ export default function AboutUs() {
       id: "baby",
       name: "Baby",
       role: "Coming Soon",
-      image: "/baby-placeholder.jpg", // Replace with actual image path
+      image: "/baby.jpg", // Replace with actual image path
       description:
         "The newest member of our family, arriving soon! Everyone is excited to meet this little one and discover their unique personality. The nursery is not ready but filled with books, toys, and lots of love.",
       funFacts: [
