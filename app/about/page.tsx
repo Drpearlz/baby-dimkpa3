@@ -22,7 +22,7 @@ export default function AboutUs() {
       id: "dad",
       name: "Dad",
       role: "Osorochi",
-      image: "/dad-placeholder.jpg", // Replace with actual image path
+      image: "/dad.jpg", // Replace with actual image path
       description:
         "Amateur chef by night. I love spending time with family and friends.",
       funFacts: [
@@ -35,7 +35,7 @@ export default function AboutUs() {
       id: "mom",
       name: "Mum",
       role: "Peggy",
-      image: "/mom-placeholder.jpg", // Replace with actual image path
+      image: "/mum.jpg", // Replace with actual image path
       description:
         "Software engineer by day, amateur chef by night. I love building things, whether it's code or furniture. When I'm not working, you'll find me playing soccer or trying to learn something online.",
       funFacts: [
@@ -48,7 +48,7 @@ export default function AboutUs() {
       id: "children",
       name: "Kids",
       role: "ChiLiveth and Chimenem",
-      image: "/child1-placeholder.jpg", // Replace with actual image path
+      image: "/kids.jpg", // Replace with actual image path
       description:
         "ChiLiveth is a fourth-grader who loves science experiments and ballet. She is excited to be a big sister again and has years of experience with her brother. Her favorite things are playing the piano, crochetting, and playing with my squishy doughs. For Chimenem he enjoys Gecko (PJ Masks), Spidey and Chase (Paw Patrol).",
       funFacts: [
