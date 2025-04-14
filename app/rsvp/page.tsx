@@ -101,8 +101,8 @@ const BabyShowerInvite = () => {
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Your RSVP for the baby shower has been confirmed.
             </p>
-            <Button onClick={() => router.push("/registry")} className="w-full">
-              Go To Registry
+            <Button onClick={() => router.push("/")} className="w-full">
+              See The Baby Games 
             </Button>
           </CardContent>
         </Card>
