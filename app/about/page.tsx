@@ -231,7 +231,7 @@ export default function AboutUs() {
           </Card>
         </motion.div>
 
-        <motion.div variants={itemVariants}>
+        {/* <motion.div variants={itemVariants}>
           <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg">
             <h2 className="text-2xl font-bold mb-4 text-center">Family Values</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -255,7 +255,7 @@ export default function AboutUs() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
 
         <motion.div variants={itemVariants} className="text-center">
           <p className="text-muted-foreground">
