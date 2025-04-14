@@ -152,7 +152,7 @@ export default function AboutUs() {
                     <div>
                       <div className="aspect-video relative rounded-lg overflow-hidden mb-4">
                         <Image
-                          src="/api/placeholder/600/400"
+                          src="/Fam.jpg"
                           alt="Family together"
                           className="object-cover"
                           fill
