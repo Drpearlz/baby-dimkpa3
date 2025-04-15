@@ -184,7 +184,7 @@ export default function AboutUs() {
                         love from family and friends.
                       </p>
                       <div className="flex items-center gap-2 mt-4">
-                        <Baby className="h-5 w-5 text-blue-500" />
+                        <Baby className="h-5 w-5 text-cyan-500" />
                         <span className="font-medium">
                           Baby #3 arriving Summer 2025!
                         </span>
