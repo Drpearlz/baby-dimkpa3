@@ -26,9 +26,9 @@ export default function AboutUs() {
       description:
         "Amateur chef by night. I love spending time with family and friends.",
       funFacts: [
-        "Can name all 50 states in alphabetical order",
+        "Can name the botanical names of his favourite foods",
         "Makes the best fried rice in the World",
-        "Has a collection of vintage video games",
+        "Had done up to 50km by foot in one day",
       ],
     },
     {
@@ -53,7 +53,7 @@ export default function AboutUs() {
         "ChiLiveth is a fourth-grader who loves science experiments and ballet. She is excited to be a big sister again and has years of experience with her brother. Her favorite things are playing the piano, crochetting, and playing with my squishy doughs. For Chimenem he enjoys Gecko (PJ Masks), Spidey and Chase (Paw Patrol).",
       funFacts: [
         "Chimenem is the best lawyer in the family.",
-        "Both birthdays are in July, a week apart",
+        "Their birthdays are in July, a week apart",
         "ChiLiveth has done 4+ dance shows",
       ],
     },
@@ -69,7 +69,7 @@ export default function AboutUs() {
         "Already has a collection of hand-me-down books",
         "Dad thinks Baby will be musical",
         "Mom thinks Baby will be athletic",
-        "The siblings are debating gender daily",
+        "The siblings think they are sure of babys gender",
       ],
     },
   ];
