@@ -18,18 +18,18 @@ import {
 // Payment method configuration
 const PaymentMethods = [
   {
-    name: 'PayPal',
+    name: 'PayPal 🌎',
     icon: Wallet,
     link: 'https://www.paypal.me/drpearlz', // Replace with actual PayPal link
   },
   {
-    name: 'Interac',
+    name: 'Interac 🇨🇦',
     icon: CreditCard,
     link: '', // Add Interac e-transfer details or link
     details: 'Email: roxy@sfu.ca'
   },
   {
-    name: 'Paystack',
+    name: 'Paystack 🇳🇬',
     icon: Baby,
     link: 'https://paystack.com/pay/pegos2025', // Replace with actual Paystack link
   }
