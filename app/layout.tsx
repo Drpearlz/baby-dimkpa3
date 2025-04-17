@@ -8,8 +8,8 @@ import GiveButton from "@/components/give-button";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Baby Dimkpa Shower Registry",
-  description: "A registry site for our upcoming baby",
+  title: "Baby Dimkpa's website",
+  description: "A website for our upcoming baby and kids",
 };
 
 export default function RootLayout({
