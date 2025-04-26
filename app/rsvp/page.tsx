@@ -121,7 +121,7 @@ const BabyShowerInvite = () => {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold text-gray-800 dark:text-white flex items-center justify-center gap-2">
               <Gift className="text-cyan-500 w-7 h-7" />
-              Baby Dimkpa3 Shower Invitation
+              Baby Shower & Birthdays Invitation
             </CardTitle>
             <div className="mt-4 text-gray-600 dark:text-gray-300 space-y-2">
               <div className="flex items-center justify-center gap-2">
