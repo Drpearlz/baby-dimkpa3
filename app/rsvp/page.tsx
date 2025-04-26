@@ -99,10 +99,10 @@ const BabyShowerInvite = () => {
               Thank You, {formData.name}!
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Your RSVP for the baby shower has been confirmed.
+              Your RSVP for the baby shower and birthday celebration has been confirmed.
             </p>
             <Button onClick={() => router.push("/")} className="w-full">
-              See The Baby Games 
+              Play The Baby Games 
             </Button>
           </CardContent>
         </Card>
