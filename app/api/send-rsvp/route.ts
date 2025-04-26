@@ -71,7 +71,7 @@ export async function POST(request: Request) {
         <body>
           <div class="container">
             <div class="header">
-              <h1>Baby Shower RSVP 🎁</h1>
+              <h1>Baby Shower & Birthdays RSVP 🎁</h1>
             </div>
             <div class="content">
               <div class="detail">
@@ -104,7 +104,7 @@ export async function POST(request: Request) {
       const mailOptions = {
         from: process.env.EMAIL_USER,
         to: process.env.RECIPIENT_EMAIL,
-        subject: `Baby Dimkpa3 Shower RSVP from ${name}`,
+        subject: `Baby Shower & Birthdays RSVP from ${name}`,
         html: htmlContent,
         cc: email,
       };
