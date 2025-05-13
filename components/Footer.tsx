@@ -14,7 +14,7 @@ export default function Footer() {
               Baby Dimkpa³ Shower/Registry
             </Link>
             <p className="text-sm text-muted-foreground mt-1">
-              Celebrating #PegOs2015 latest arrival with love
+              Celebrating #PegOs2015 Children&apos;s birthday and their latest arrival&apos;s shower with love
             </p>
           </div>
           
