@@ -1,15 +1,14 @@
-
 "use client";
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Baby } from 'lucide-react';
 import { motion } from "framer-motion";
 
 export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8 sm:py-12">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -35,11 +34,11 @@ export default function Home() {
           
           <Link href="/registry" className="block">
             <div className="border rounded-lg p-4 sm:p-6 h-full transition-all hover:shadow-lg hover:border-primary">
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
                 className="h-8 w-8 sm:h-12 sm:w-12 mb-3 sm:mb-4 mx-auto text-blue-500"
-                fill="none" 
-                viewBox="0 0 24 24" 
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10" />
@@ -53,11 +52,11 @@ export default function Home() {
           
           <Link href="/guestbook" className="block">
             <div className="border rounded-lg p-4 sm:p-6 h-full transition-all hover:shadow-lg hover:border-primary">
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-8 w-8 sm:h-12 sm:w-12 mb-3 sm:mb-4 mx-auto text-purple-500" 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-8 w-8 sm:h-12 sm:w-12 mb-3 sm:mb-4 mx-auto text-purple-500"
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -70,18 +69,19 @@ export default function Home() {
           </Link>
         </div>
         
-        <div className="mt-8 sm:mt-12">
+        {/* Button container with flex layout for desktop */}
+        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row sm:justify-center gap-4">
           <Link href="/about">
             <Button size="lg" className="font-semibold w-full sm:w-auto">
               Learn More About Us
             </Button>
           </Link>
-          </div>
-        <div className="mt-8 sm:mt-12">
+          
           <Link href="/rsvp">
-          <Button size="lg" className="font-semibold w-full sm:w-auto">
-            RSVP to baby Shower</Button>
-            </Link>
+            <Button size="lg" className="font-semibold w-full sm:w-auto">
+              RSVP to 🎁 & Baby Shower
+            </Button>
+          </Link>
         </div>
       </motion.div>
     </div>

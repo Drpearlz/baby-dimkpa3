@@ -20,7 +20,7 @@ export default function Footer() {
           
           <div className="flex items-center space-x-1 text-sm text-muted-foreground">
             <span>Made with</span>
-            <Heart className="h-4 w-4 text-red-500" />
+            <Heart className="h-4 w-4 text-red-500" /> by Peggy
             <span>© {year}</span>
           </div>
         </div>

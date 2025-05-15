@@ -94,6 +94,12 @@ export async function POST(request: Request) {
               </div>
               ` : ''}
               <hr>
+             <p> If you haven't already, 
+               <a href="${process.env.NEXT_PUBLIC_BASE_URL || 'https://baby-dimkpa3.vercel.app'}" style="display: inline-block; background-color: #9370db; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; text-align: center; margin: 10px 0;">
+               Guess Baby's gender here 
+             </a>
+            </p>
+              <hr>
               <p>Submitted on: ${currentDate}</p>
             </div>
           </div>
