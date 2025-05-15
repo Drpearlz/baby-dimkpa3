@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Sparkles, Baby } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { motion } from "framer-motion";
 
 export default function Home() {
