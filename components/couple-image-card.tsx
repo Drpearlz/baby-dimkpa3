@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Card } from "@/components/ui/card";
 
 const CoupleImageCard = () => {
-  const imageOptions = ["/bs1.jpg","/bump.png", "/p1.jpg", "/p4.jpg", "/p3.jpg"];
+  const imageOptions = ["/bs.jpg","/bump.png", "/p1.jpg", "/p4.jpg", "/p3.jpg"];
   const [image, setImage] = useState(imageOptions[0]);
 
   const changeImage = () => {
