@@ -126,7 +126,7 @@ const BabyShowerInvite = () => {
             <div className="mt-4 text-gray-600 dark:text-gray-300 space-y-2">
               <div className="flex items-center justify-center gap-2">
                 <Calendar className="w-5 h-5" />
-                <span>Saturday, June 21, 2025</span>
+                <span>Sunday, June 22, 2025</span>
               </div>
               <div className="flex items-center justify-center gap-2">
                 <MapPin className="w-5 h-5 text-cyan-500" />
