@@ -187,7 +187,7 @@ export default function Registry() {
       <p className="text-center mb-8 text-muted-foreground">
       Hi family and friends, We&apos;ve set up a registry on Amazon for some things we might
        need for baby Dimkpa 3. Don&apos;t feel pressured to get anything. The list is more of a guide. 
-       Feel free to shop elsewhere if needed. See you at the shower on June 21 @ 1pm. Cheers. Osorochi & Peggy
+       Feel free to shop elsewhere if needed. See you at the shower on June 21 @ 3pm. Cheers. Osorochi & Peggy
       </p>
       
       <Tabs defaultValue="all" className="w-full">
