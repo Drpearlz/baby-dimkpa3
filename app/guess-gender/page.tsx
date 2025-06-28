@@ -41,7 +41,7 @@ export default function GenderGuess() {
 
   // Set your due date here
   const dueDate = useMemo(() => {
-    return new Date("2025-07-02T18:05:00-09:00");
+    return new Date("2025-07-05T18:05:00-09:00");
   }, []);
 
   // Set the actual gender once revealed (empty string means not revealed yet)
