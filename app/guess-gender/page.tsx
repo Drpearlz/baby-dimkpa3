@@ -210,11 +210,11 @@ export default function GenderGuess() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
               className={`text-center p-8 rounded-xl ${
-                actualGender === "girl" ? "bg-blue-50" : "bg-pink-50"
+                actualGender === "girl" ? "bg-pink-50" : "bg-blue-50"
               }`}
             >
               <h2 className="text-4xl font-bold mb-4">
-                It&apos;s a {actualGender === "boy" ? "BOY!" : "GIRL!"}
+                It&apos;s a {actualGender === "girl" ? "BOY!" : "GIRL!"}
               </h2>
               <p className="text-xl">
                 We are excited to reveal that we&apos;re having a beautiful{" "}
@@ -492,9 +492,9 @@ export default function GenderGuess() {
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ duration: 0.3 }}
                               className={`p-3 rounded-md flex justify-between items-center ${
-                                actualGender === "boy"
-                                  ? "bg-blue-50"
-                                  : "bg-pink-50"
+                                actualGender === "girl"
+                                  ? "bg-pink-50"
+                                  : "bg-blue-50"
                               }`}
                             >
                               <div className="flex items-center gap-2">
@@ -556,9 +556,9 @@ export default function GenderGuess() {
                               <div className="flex items-center mt-1 gap-1">
                                 <span
                                   className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                                    guess.gender === "boy"
-                                      ? "bg-blue-100 text-blue-700"
-                                      : "bg-pink-100 text-pink-700"
+                                    guess.gender === "girl"
+                                      ? "bg-pink-100 text-pink-700"
+                                      : "bg-blue-100 text-blue-700"
                                   }`}
                                 >
                                   {guess.gender}
