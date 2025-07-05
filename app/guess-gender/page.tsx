@@ -18,7 +18,7 @@ import { motion } from "framer-motion";
 import { db } from "@/lib/firebase";
 import { ref, push, set, onValue } from "firebase/database";
 import CoupleImageCard from "@/components/couple-image-card";
-import { Check, X, Clock, Trophy, CalendarDays } from "lucide-react";
+import { Check, X, Trophy, CalendarDays } from "lucide-react";
 
 // Define a proper TypeScript interface for the guess data
 interface Guess {
