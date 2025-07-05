@@ -210,8 +210,8 @@ export default function GenderGuess() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
               className={`text-center p-8 rounded-xl ${
-                actualGender === "girl" ? "bg-pink-50" : "bg-blue-50"
-              }`}
+              actualGender === "girl" ? "bg-pink-50 dark:bg-pink-900" : "bg-blue-50 dark:bg-blue-900"
+      }`}
             >
               <h2 className="text-4xl font-bold mb-4">
                 It&apos;s a {actualGender === "girl" ? "GIRL!" : "BOY!"}
