@@ -471,58 +471,58 @@ export default function GenderGuess() {
               </Tabs>
 
               <Tabs value={activeTab} onValueChange={setActiveTab}>
-                <TabsContent value="winners" className="mt-0">
-                  {isRevealed && actualGender ? (
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-2 mb-4">
-                        <Trophy className="h-5 w-5 text-yellow-500" />
-                        <h3 className="font-medium">
-                          {winners.length}{" "}
-                          {winners.length === 1 ? "person" : "people"} guessed
-                          correctly!
-                        </h3>
-                      </div>
+  <TabsContent value="winners" className="mt-0">
+    {isRevealed && actualGender ? (
+      <div className="space-y-4">
+        <div className="flex items-center gap-2 mb-4">
+          <Trophy className="h-5 w-5 text-yellow-500 dark:text-yellow-400" />
+          <h3 className="font-medium text-slate-900 dark:text-slate-100">
+            {winners.length}{" "}
+            {winners.length === 1 ? "person" : "people"} guessed
+            correctly!
+          </h3>
+        </div>
 
-                      {winners.length > 0 ? (
-                        <div className="space-y-2 max-h-64 overflow-y-auto">
-                          {winners.map((winner) => (
-                            <motion.div
-                              key={winner.id}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ duration: 0.3 }}
-                              className={`p-3 rounded-md flex justify-between items-center ${
-                                actualGender === "girl"
-                                  ? "bg-pink-50"
-                                  : "bg-blue-50"
-                              }`}
-                            >
-                              <div className="flex items-center gap-2">
-                                <Check className="h-5 w-5 text-green-500" />
-                                <span className="font-medium">
-                                  {winner.name}
-                                </span>
-                              </div>
-                              <div className="text-sm text-muted-foreground">
-                                {formatDate(winner.timestamp)}
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
-                      ) : (
-                        <p className="text-center p-4 border rounded-lg">
-                          No one guessed correctly! What a surprise!
-                        </p>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="text-center p-4">
-                      <Clock className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
-                      <p>The gender hasn&apos;t been revealed yet!</p>
-                    </div>
-                  )}
-                </TabsContent>
-              </Tabs>
+        {winners.length > 0 ? (
+          <div className="space-y-2 max-h-64 overflow-y-auto dark:bg-slate-800 rounded-lg p-2">
+            {winners.map((winner) => (
+              <motion.div
+                key={winner.id}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+                className={`p-3 rounded-md flex justify-between items-center ${
+                  actualGender === "girl"
+                    ? "bg-pink-50 dark:bg-pink-900"
+                    : "bg-blue-50 dark:bg-blue-900"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Check className="h-5 w-5 text-green-500 dark:text-green-400" />
+                  <span className="font-medium text-slate-900 dark:text-slate-100">
+                    {winner.name}
+                  </span>
+                </div>
+                <div className="text-sm text-muted-foreground dark:text-gray-300">
+                  {formatDate(winner.timestamp)}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center text-slate-900 dark:text-slate-100">
+            No one has guessed correctly yet.
+          </div>
+        )}
+      </div>
+    ) : (
+      <div className="text-center text-slate-900 dark:text-slate-100">
+        The gender has not been revealed yet.
+      </div>
+    )}
+  </TabsContent>
+</Tabs>
+              
 
               <Tabs value={activeTab} onValueChange={setActiveTab}>
                 <TabsContent value="allGuesses" className="mt-0">
