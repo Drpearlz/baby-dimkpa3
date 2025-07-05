@@ -536,29 +536,29 @@ export default function GenderGuess() {
                               isRevealed &&
                               actualGender &&
                               guess.gender === actualGender
-                                ? "border-green-300 bg-green-50"
+                                ? "border-green-300 dark:bg-green-400"
                                 : ""
                             }`}
                           >
                             <div>
                               <div className="flex items-center gap-2">
-                                <span className="font-medium">
+                                <span className="font-medium text-slate-900 dark:text-slate-100">
                                   {guess.name}
                                 </span>
                                 {isRevealed &&
                                   actualGender &&
                                   (guess.gender === actualGender ? (
-                                    <Check className="h-4 w-4 text-green-500" />
+                                    <Check className="h-4 w-4 text-green-500 dark:text-green-400" />
                                   ) : (
-                                    <X className="h-4 w-4 text-red-500" />
+                                    <X className="h-4 w-4 text-red-500 dark:text-red-400" />
                                   ))}
                               </div>
                               <div className="flex items-center mt-1 gap-1">
                                 <span
                                   className={`text-xs font-medium px-2 py-0.5 rounded-full ${
                                     guess.gender === "girl"
-                                      ? "bg-pink-100 text-pink-700"
-                                      : "bg-blue-100 text-blue-700"
+                                      ? "bg-pink-100 dark:text-pink-700"
+                                      : "bg-blue-100 dark:text-blue-700"
                                   }`}
                                 >
                                   {guess.gender}
@@ -566,7 +566,7 @@ export default function GenderGuess() {
                               </div>
                             </div>
 
-                            <div className="text-xs text-muted-foreground flex items-center gap-1">
+                            <div className="text-xs text-muted-foreground dark:text-gray-300 flex items-center gap-1">
                               <CalendarDays className="h-3 w-3" />
                               {formatDate(guess.timestamp)}
                             </div>
