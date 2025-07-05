@@ -217,7 +217,7 @@ export default function GenderGuess() {
                 It&apos;s a {actualGender === "girl" ? "GIRL!" : "BOY!"}
               </h2>
               <p className="text-xl">
-                We are excited to reveal that we&apos;re having a beautiful{" "}
+                We are excited to reveal that we&apos;ve just had a beautiful{" "}
                 {actualGender === "girl" ? "baby girl" : "baby boy"}!
               </p>
               {winners.length > 0 && (
