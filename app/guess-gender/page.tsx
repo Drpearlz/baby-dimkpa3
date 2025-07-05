@@ -41,11 +41,11 @@ export default function GenderGuess() {
 
   // Set your due date here
   const dueDate = useMemo(() => {
-    return new Date("2025-07-07T18:35:00-09:00");
+    return new Date("2025-07-05T01:00:00-09:00");
   }, []);
 
   // Set the actual gender once revealed (empty string means not revealed yet)
-  const actualGender = "boy"; // Change this when gender is revealed (boy/girl)
+  const actualGender = "girl"; // Change this when gender is revealed (boy/girl)
 
   useEffect(() => {
     // Update countdown timer every second
@@ -210,7 +210,7 @@ export default function GenderGuess() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
               className={`text-center p-8 rounded-xl ${
-                actualGender === "boy" ? "bg-blue-50" : "bg-pink-50"
+                actualGender === "girl" ? "bg-blue-50" : "bg-pink-50"
               }`}
             >
               <h2 className="text-4xl font-bold mb-4">
@@ -218,7 +218,7 @@ export default function GenderGuess() {
               </h2>
               <p className="text-xl">
                 We are excited to reveal that we&apos;re having a beautiful{" "}
-                {actualGender === "boy" ? "baby boy" : "baby girl"}!
+                {actualGender === "girl" ? "baby boy" : "baby girl"}!
               </p>
               {winners.length > 0 && (
                 <p className="mt-4">
